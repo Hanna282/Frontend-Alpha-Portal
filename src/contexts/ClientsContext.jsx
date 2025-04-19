@@ -4,7 +4,6 @@ import { useAuth } from "./AuthContext";
 const ClientsContext = createContext();
 
 export const ClientsProvider = ({ children }) => {
-  const apiUri = 'https://localhost:7095/api';
   const { token, adminApiKey } = useAuth()
   const [clients, setClients] = useState([])
 
@@ -15,7 +14,7 @@ export const ClientsProvider = ({ children }) => {
   }, [token])
 
   const addClient = async (formData) => {
-    const res = await fetch(`${apiUri}/clients`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/clients`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -34,7 +33,7 @@ export const ClientsProvider = ({ children }) => {
   }
 
   const editClient = async (formData) => {
-    const res = await fetch(`${apiUri}/clients`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/clients`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -53,7 +52,7 @@ export const ClientsProvider = ({ children }) => {
   }
 
   const getClients = async () => {
-    const res = await fetch(`${apiUri}/clients`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/clients`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -70,7 +69,7 @@ export const ClientsProvider = ({ children }) => {
   }
 
   const deleteClient = async (clientId) => {
-    const res = await fetch(`${apiUri}/clients/${clientId}`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/clients/${clientId}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`,

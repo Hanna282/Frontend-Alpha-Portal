@@ -6,7 +6,6 @@ import { useMembers } from "./MembersContext";
 const ProjectsContext = createContext();
 
 export const ProjectsProvider = ({ children }) => {
-  const apiUri = 'https://localhost:7095/api';
   const { token } = useAuth()
   const { clients } = useClients()
   const { members } = useMembers()
@@ -21,7 +20,7 @@ export const ProjectsProvider = ({ children }) => {
   }, [token])
 
   const addProject = async (formData) => {
-    const res = await fetch(`${apiUri}/projects`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/projects`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -39,7 +38,7 @@ export const ProjectsProvider = ({ children }) => {
   }
 
   const editProject = async (formData) => {
-    const res = await fetch(`${apiUri}/projects`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/projects`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -57,7 +56,7 @@ export const ProjectsProvider = ({ children }) => {
   }
 
   const getProjects = async () => {
-    const res = await fetch(`${apiUri}/projects`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/projects`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -74,7 +73,7 @@ export const ProjectsProvider = ({ children }) => {
   }
 
   const getStatuses = async () => {
-    const res = await fetch(`${apiUri}/statuses`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/statuses`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -91,7 +90,7 @@ export const ProjectsProvider = ({ children }) => {
   }
 
   const deleteProject = async (projectId) => {
-    const res = await fetch(`${apiUri}/projects/${projectId}`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/projects/${projectId}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`

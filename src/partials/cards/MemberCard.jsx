@@ -3,8 +3,7 @@ import AvatarOrangePurple from '../../assets/images/avatars/avatar-man-orange-pu
 
 const MemberCard = ({ member, onEditClick, onDeleteClick }) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-    const imageBaseUrl = 'https://localhost:7095/images/';
-    const memberImage = member.imageFileName ? `${imageBaseUrl}${member.imageFileName}` : AvatarOrangePurple;
+    const memberImage = member.imageFileName ? member.imageFileName : AvatarOrangePurple;
 
     const toggleDropdown = () => setIsDropdownOpen(prev => !prev)
 

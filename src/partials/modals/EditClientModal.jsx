@@ -3,7 +3,6 @@ import { useClients } from '../../contexts/ClientsContext';
 
 const EditClientModal = ({ onClose, client }) => {
     const [imagePreview, setImagePreview] = useState(null)
-    const baseImageUrl = "https://localhost:7095/images";
     const fileUploadRef = useRef(null)
     const { editClient } = useClients()
     const [errors, setErrors] = useState({})
@@ -39,7 +38,7 @@ const EditClientModal = ({ onClose, client }) => {
             })
 
             if (existingImageFileName)
-                setImagePreview(`${baseImageUrl}/${existingImageFileName}`)
+                setImagePreview(existingImageFileName)
         }
     }, [client])
 
@@ -123,8 +122,10 @@ const EditClientModal = ({ onClose, client }) => {
         const { name, value, files } = e.target;
 
         if (files && files[0]) {
+            console.log("Ny fil vald för projekt:", files[0]);
             setForm(prev => ({ ...prev, newImageFileName: files[0] }))
             setImagePreview(URL.createObjectURL(files[0]))
+            console.log("Form after file selection:", form);
         }
         else {
             setForm(prev => ({ ...prev, [name]: value }))
@@ -146,16 +147,16 @@ const EditClientModal = ({ onClose, client }) => {
 
         const formData = new FormData();
         if (form.newImageFileName instanceof File)
-            formData.append('newImageFileName', form.newImageFileName)
-        formData.append('id', form.id)
-        formData.append('existingImageFileName', form.existingImageFileName || '')
-        formData.append('clientName', form.clientName)
-        formData.append('email', form.email)
-        formData.append('phone', form.phone || '')
-        formData.append('streetName', form.streetName)
-        formData.append('postalCode', form.postalCode)
-        formData.append('city', form.city)
-        formData.append('reference', form.reference || '')
+            formData.append("newImageFileName", form.newImageFileName)
+        formData.append("id", form.id)
+        formData.append("existingImageFileName", form.existingImageFileName || '')
+        formData.append("clientName", form.clientName)
+        formData.append("email", form.email)
+        formData.append("phone", form.phone || '')
+        formData.append("streetName", form.streetName)
+        formData.append("postalCode", form.postalCode)
+        formData.append("city", form.city)
+        formData.append("reference", form.reference || '')
 
         const result = await editClient(formData)
         if (!result.success) {

@@ -3,8 +3,7 @@ import AvatarGrayOrange from '../../assets/images/avatars/avatar-woman-gray-oran
 
 const ClientTable = ({ client, onEditClick, onDeleteClick }) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-    const imageBaseUrl = 'https://localhost:7095/images/';
-    const clientImage = client.imageFileName ? `${imageBaseUrl}${client.imageFileName}` : AvatarGrayOrange;
+    const clientImage = client.imageFileName ? client.imageFileName : AvatarGrayOrange;
 
     const toggleDropdown = () => setIsDropdownOpen(prev => !prev)
 

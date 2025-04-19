@@ -3,8 +3,7 @@ import IconRadialBlue from '../../assets/images/projects/Icon_radial_blue.svg'
 
 const ProjectCard = ({ project, onEditClick,  onDeleteClick}) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-    const imageBaseUrl = 'https://localhost:7095/images/';
-    const projectImage = project.imageFileName ? `${imageBaseUrl}${project.imageFileName}` : IconRadialBlue 
+    const projectImage = project.imageFileName ? project.imageFileName : IconRadialBlue 
 
     // Tagit hjälp av AI gällande normalisering av datumen
     const normalizeDate = (date) => {

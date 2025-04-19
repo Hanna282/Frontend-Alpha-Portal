@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const apiUri = 'https://localhost:7095/api/auth';
     const [loading, setLoading] = useState(false)
     const [token, setToken] = useState(null)
     const [isAdmin, setIsAdmin] = useState(false)
@@ -29,7 +28,7 @@ export const AuthProvider = ({ children }) => {
     }, [])
 
     const signIn = async (email, password) => {
-        const res = await fetch(`${apiUri}/signin`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/signin`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
@@ -57,7 +56,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     const signUp = async (formData) => {
-        const res = await fetch(`${apiUri}/signup`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/signup`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)

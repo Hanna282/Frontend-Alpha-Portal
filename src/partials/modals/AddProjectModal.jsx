@@ -3,7 +3,7 @@ import { useProjects } from "../../contexts/ProjectsContext";
 
 const AddProjectModal = ({ onClose, clients = [], members = [] }) => {
     const [imagePreview, setImagePreview] = useState(null)
-    const fileUploadRef = useRef(null);
+    const fileUploadRef = useRef(null)
     const { addProject } = useProjects()
     const [errors, setErrors] = useState({})
     const [errorMessage, setErrorMessage] = useState()
@@ -90,7 +90,7 @@ const AddProjectModal = ({ onClose, clients = [], members = [] }) => {
         const { name, value, files } = e.target;
 
         if (files && files[0]) {
-            setForm(prev => ({ ...prev, newImageFileName: files[0] }))
+            setForm(prev => ({ ...prev, imageFileName: files[0] }))
             setImagePreview(URL.createObjectURL(files[0]))
         }
         else {

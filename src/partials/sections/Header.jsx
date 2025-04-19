@@ -9,9 +9,8 @@ const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [darkMode, setDarkMode] = useState(localStorage.getItem("theme") === "dark")
 
-  const baseImageUrl = "https://localhost:7095/images"
-  const avatar = signedInMember.imageFileName ? `${baseImageUrl}/${signedInMember.imageFileName}`: AvatarImage;
-  const name = signedInMember.information ? `${signedInMember.information.firstName} ${signedInMember.information.lastName}`: "Förnamn Efternamn";
+  const avatar = signedInMember.imageFileName ? signedInMember.imageFileName : AvatarImage;
+  const name = signedInMember.information ? `${signedInMember.information.firstName} ${signedInMember.information.lastName}` : "Förnamn Efternamn";
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", darkMode ? "dark" : "light")

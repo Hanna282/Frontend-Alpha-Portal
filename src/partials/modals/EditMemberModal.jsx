@@ -3,7 +3,6 @@ import { useMembers } from '../../contexts/MembersContext'
 
 const EditMemberModal = ({ onClose, member }) => {
     const [imagePreview, setImagePreview] = useState(null)
-    const baseImageUrl = "https://localhost:7095/images";
     const fileUploadRef = useRef(null)
     const { roles, editMember } = useMembers()
     const [errors, setErrors] = useState({})
@@ -43,7 +42,7 @@ const EditMemberModal = ({ onClose, member }) => {
             })
 
             if (existingImageFileName)
-                setImagePreview(`${baseImageUrl}/${existingImageFileName}`)
+                setImagePreview(existingImageFileName)
         }
     }, [member])
 
@@ -160,18 +159,18 @@ const EditMemberModal = ({ onClose, member }) => {
 
         const formData = new FormData()
         if (form.newImageFileName instanceof File)
-            formData.append('newImageFileName', form.newImageFileName)
-        formData.append('id', form.id)
-        formData.append('existingImageFileName', form.existingImageFileName || '')
-        formData.append('firstName', form.firstName)
-        formData.append('lastName', form.lastName)
-        formData.append('email', form.email)
-        formData.append('phone', form.phone || '')
-        formData.append('jobTitle', form.jobTitle)
-        formData.append('role', form.role)
-        formData.append('streetName', form.streetName)
-        formData.append('postalCode', form.postalCode)
-        formData.append('city', form.city)
+            formData.append("newImageFileName", form.newImageFileName)
+        formData.append("id", form.id)
+        formData.append("existingImageFileName", form.existingImageFileName || '')
+        formData.append("firstName", form.firstName)
+        formData.append("lastName", form.lastName)
+        formData.append("email", form.email)
+        formData.append("phone", form.phone || '')
+        formData.append("jobTitle", form.jobTitle)
+        formData.append("role", form.role)
+        formData.append("streetName", form.streetName)
+        formData.append("postalCode", form.postalCode)
+        formData.append("city", form.city)
 
         const result = await editMember(formData)
         if (!result.success) {

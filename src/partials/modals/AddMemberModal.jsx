@@ -3,7 +3,7 @@ import { useMembers } from '../../contexts/MembersContext';
 
 const AddMemberModal = ({ onClose }) => {
     const [imagePreview, setImagePreview] = useState(null)
-    const fileUploadRef = useRef(null);
+    const fileUploadRef = useRef(null)
     const { roles, addMember } = useMembers()
     const [errors, setErrors] = useState({})
     const [errorMessage, setErrorMessage] = useState()
@@ -143,7 +143,8 @@ const AddMemberModal = ({ onClose }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        if (!validateForm()) return;
+        if (!validateForm()) 
+            return;
 
         const formData = new FormData()
         if (form.imageFileName)

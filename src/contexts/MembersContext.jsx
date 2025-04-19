@@ -4,7 +4,6 @@ import { useAuth } from "./AuthContext";
 const MembersContext = createContext();
 
 export const MembersProvider = ({ children }) => {
-    const apiUri = 'https://localhost:7095/api';
     const { token, adminApiKey } = useAuth()
     const [members, setMembers] = useState([])
     const [signedInMember, setSignedInMember] = useState([])
@@ -18,7 +17,7 @@ export const MembersProvider = ({ children }) => {
     }, [token])
 
     const addMember = async (formData) => {
-        const res = await fetch(`${apiUri}/users`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -38,7 +37,7 @@ export const MembersProvider = ({ children }) => {
     }
 
     const editMember = async (formData) => {
-        const res = await fetch(`${apiUri}/users`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -58,7 +57,7 @@ export const MembersProvider = ({ children }) => {
     }
 
     const getMembers = async () => {
-        const res = await fetch(`${apiUri}/users`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
             method: 'GET',
             headers: {
                 'Authorization': `bearer ${token}`,
@@ -75,7 +74,7 @@ export const MembersProvider = ({ children }) => {
     }
 
     const getSignedInMember = async () => {
-        const res = await fetch(`${apiUri}/users/me`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/users/me`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -92,7 +91,7 @@ export const MembersProvider = ({ children }) => {
     }
 
     const deleteMember = async (memberId) => {
-        const res = await fetch(`${apiUri}/users/${memberId}`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/users/${memberId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`,

@@ -3,7 +3,6 @@ import { useProjects } from "../../contexts/ProjectsContext"
 
 const EditProjectModal = ({ onClose, project, clients, members, statuses }) => {
     const [imagePreview, setImagePreview] = useState(null)
-    const baseImageUrl = "https://localhost:7095/images";
     const fileUploadRef = useRef(null)
     const { editProject } = useProjects()
     const [errors, setErrors] = useState({})
@@ -41,7 +40,7 @@ const EditProjectModal = ({ onClose, project, clients, members, statuses }) => {
             })
 
             if (existingImageFileName)
-                setImagePreview(`${baseImageUrl}/${existingImageFileName}`)
+                setImagePreview(existingImageFileName)
         }
     }, [project])
 
